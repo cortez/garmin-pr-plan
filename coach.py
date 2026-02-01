@@ -28,7 +28,7 @@ def analyze_fitness(activities):
     return metrics
 
 
-def generate_training_plan(fitness_data, distance, goal_pace, race_date):
+def generate_training_plan(fitness_data, distance, goal_pace, race_date, long_run_day="Saturday"):
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise ValueError("GEMINI_API_KEY must be set in .env file")
@@ -53,6 +53,10 @@ RACE GOAL:
 - Race Date: {race_date}
 - Weeks until race: {weeks_until_race}
 - Today: {today}
+
+SCHEDULE PREFERENCES:
+- Long runs should be on {long_run_day}
+- Space out hard workouts with easy days between them
 
 TRAINING PHILOSOPHY:
 Create a periodized plan following Daniels/Pfitzinger/Hudson methodologies. Include:

@@ -29,7 +29,7 @@ def main():
 
     console.print()
     console.print(Panel.fit(
-        "[bold]GARMIN PR PLAN[/bold]\n[dim]AI-Powered Training Plan Generator[/dim]",
+        "[bold]GARMIN PR PLAN[/bold]\n[dim]Powered by Gemini 3 Pro[/dim]",
         border_style="blue",
     ))
     console.print()
@@ -90,11 +90,15 @@ def main():
         sys.exit(1)
 
     console.print()
+
+    long_run_day = Prompt.ask("[bold]What day do you prefer for long runs?[/bold]", default="Saturday")
+
+    console.print()
     console.print()
 
     with Status("[bold]Generating your personalized training plan...", spinner="dots", console=console):
         try:
-            training_plan = generate_training_plan(fitness_data, distance, goal_pace, race_date)
+            training_plan = generate_training_plan(fitness_data, distance, goal_pace, race_date, long_run_day)
         except Exception as e:
             console.print(f"\n[red]Error:[/red] Failed to generate plan: {e}")
             sys.exit(1)
